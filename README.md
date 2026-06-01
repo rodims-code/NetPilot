@@ -1,418 +1,191 @@
 # NetPilot
 
-> AI-powered remote network management platform for technicians, MSPs, ISPs, cybercafés, hotels, schools, and enterprise networks.
+> Remote MikroTik Management Platform
 
-NetPilot is a modern desktop + cloud platform built to simplify remote network operations across multiple locations.
+NetPilot est une plateforme de gestion, supervision et accès distant dédiée aux infrastructures MikroTik.
 
-The platform combines:
+L'objectif est de permettre à un technicien, un WISP, un cybercafé, un hôtel ou une entreprise de visualiser et administrer plusieurs routeurs MikroTik depuis une seule interface.
 
-* Desktop networking tools
-* Cloud synchronization
-* Remote access
-* Real-time monitoring
-* LAN discovery
-* Tunnel networking
-* Device diagnostics
-* AI-assisted operations
+---
 
-NetPilot is designed to work with AI coding assistants such as:
+# Problem
 
-* GitHub Copilot
-* OpenAI Codex
-* Gemini
-* Cursor AI
-* Claude Code
+Aujourd'hui, gérer plusieurs MikroTik distants est compliqué :
 
-The project architecture is intentionally modular and AI-friendly to accelerate development and scalability.
+* Il faut demander l'adresse IP au client.
+* Il faut souvent utiliser AnyDesk ou TeamViewer.
+* Les clients envoient des captures d'écran WhatsApp.
+* Il est difficile de savoir rapidement si un routeur est en ligne.
+* Le diagnostic à distance prend du temps.
+
+Exemple réel :
+
+```txt
+Client :
+"Le WiFi ne fonctionne plus."
+
+Technicien :
+"Envoie-moi ton IP."
+
+Client :
+"Je ne sais pas."
+
+Technicien :
+"Installe AnyDesk."
+
+Client :
+"Je n'arrive pas."
+```
+
+NetPilot simplifie ce processus.
 
 ---
 
 # Vision
 
-The long-term vision of NetPilot is to become:
-
-> The operating system for remote network technicians.
-
-Instead of relying on:
-
-* AnyDesk
-* TeamViewer
-* random Winbox sessions
-* manual troubleshooting
-* WhatsApp screenshots
-* physical interventions
-
-Technicians can manage entire infrastructures from one centralized dashboard.
-
-NetPilot focuses specifically on:
-
-* MikroTik ecosystems
-* Wireless ISPs
-* Small businesses
-* Hotels
-* Cybercafés
-* Schools
-* Multi-site infrastructures
-* African networking environments
-
----
-
-# Real-World Problem
-
-> Intelligent remote network management platform for MikroTik, repeaters, routers, access points, and network equipment.
-
-## Overview
-
-NetPilot is a desktop + cloud platform designed for network technicians, MSPs, installers, cybercafés, hotels, schools, and small ISPs.
-
-The platform allows technicians to:
-
-* Detect network devices automatically
-* Access remote networks securely
-* Open Winbox / WebFig / SSH remotely
-* Monitor equipment status
-* Track IP changes
-* Diagnose network issues
-* Centralize multiple sites
-
-Unlike general remote desktop software, NetPilot focuses specifically on network infrastructure management.
-
----
-
-# Real-World Problem
-
-Technicians often face problems such as:
-
-* Lost router IP addresses
-* Inaccessible repeater interfaces
-* Devices behind NAT
-* Remote troubleshooting difficulties
-* Need for AnyDesk/TeamViewer sessions
-* Unstable access after configuration changes
-* Difficulty managing multiple sites
-
-NetPilot solves these issues by creating a centralized remote network management system.
-
----
-
-# Product Philosophy
-
-NetPilot is NOT trying to replace:
-
-* Winbox
-* SSH
-* WebFig
-* Mikhmon
-
-Instead, NetPilot acts as:
-
-> a smart remote infrastructure hub.
-
-The software simplifies:
-
-* discovery
-* access
-* diagnostics
-* monitoring
-* multi-site management
-* tunnel networking
-
-while still allowing technicians to use their favorite tools.
+Devenir la plateforme de référence pour la gestion des infrastructures MikroTik en Afrique et dans les marchés émergents.
 
 ---
 
 # MVP Goals
 
-The first MVP focuses on:
+Version 1 :
 
-* Remote network access
-* Automatic LAN scanning
-* Device discovery
-* Secure tunnel connection
-* Remote Winbox/Web access
-* Basic monitoring dashboard
-
----
-
-# Target Devices
-
-Supported network equipment:
-
-* MikroTik
-* TP-Link
-* LB-LINK
-* Ubiquiti
-* Huawei
-* ONT devices
-* IP Cameras
-* Switches
-* WiFi Repeaters
+* Détection automatique des MikroTik
+* Gestion multi-sites
+* Monitoring basique
+* Dashboard centralisé
+* Association simple des agents
+* Ouverture rapide Winbox / WebFig / SSH
 
 ---
 
-# Global Architecture
+# Target Users
+
+## Techniciens réseau
+
+* Freelances
+* Consultants
+
+## WISP
+
+* Fournisseurs Internet locaux
+
+## Cybercafés
+
+## Hôtels
+
+## Écoles
+
+## PME
+
+---
+
+# Core Features
+
+## Agent Installation
+
+Le client installe :
 
 ```txt
-┌──────────────────────────┐
-│     Desktop Frontend     │
-│  SvelteKit + Tauri UI    │
-└────────────┬─────────────┘
-             │
-             │ invoke() / local API
-             ↓
-┌──────────────────────────┐
-│    Golang Network Core   │
-│ Scan / Discovery / LAN   │
-└────────────┬─────────────┘
-             │
-             │ WebSocket / REST
-             ↓
-┌──────────────────────────┐
-│     Django Cloud API     │
-│ Auth / Devices / Sites   │
-└────────────┬─────────────┘
-             │
-     ┌───────┴────────┐
-     ↓                ↓
-┌──────────┐   ┌────────────┐
-│PostgreSQL│   │   Redis    │
-└──────────┘   └────────────┘
-             │
-             ↓
-┌──────────────────────────┐
-│ Tunnel Infrastructure    │
-│ Tailscale / ZeroTier     │
-└────────────┬─────────────┘
-             ↓
-┌──────────────────────────┐
-│ Remote Network Devices   │
-│ MikroTik / AP / ONT etc  │
-└──────────────────────────┘
+NetPilot Agent
+```
+
+L'agent génère :
+
+```txt
+Agent ID
+NP-XXXX-XXXX
 ```
 
 ---
 
-# Frontend Pages Structure
+## Agent Registration
 
-## Authentication
+Le technicien ajoute l'agent depuis son dashboard.
 
-* /login
-* /register
-* /forgot-password
-
----
-
-## Dashboard
-
-* /dashboard
-* Global overview
-* Active agents
-* Device statistics
-* Alerts
-* Tunnel status
+```txt
+Ajouter Agent
+↓
+Entrer Agent ID
+↓
+Validation
+```
 
 ---
 
-## Sites
+## MikroTik Discovery
 
-* /sites
-* /sites/[id]
+L'agent détecte automatiquement :
 
-Each site represents a physical client location.
-
-Examples:
-
-* Hotel Kinshasa
-* Cyber Café Goma
-* ISP Lubumbashi
+* hAP Lite
+* hAP ac²
+* RB750
+* CCR
+* CRS
+* autres modèles MikroTik
 
 ---
 
-## Devices
+## Device Information
 
-* /devices
-* /devices/[id]
+Pour chaque MikroTik :
 
-Device details include:
-
-* IP address
-* MAC address
-* Vendor
-* Open ports
-* Monitoring metrics
-* Logs
-* Remote actions
+* Identity
+* IP Address
+* MAC Address
+* RouterOS Version
+* Uptime
+* CPU Load
+* Free Memory
+* Board Name
 
 ---
 
 ## Monitoring
 
-* /monitoring
-* Real-time metrics
-* Online/offline tracking
-* Device latency
+État :
+
+* Online
+* Offline
+
+Mesures :
+
+* Latence
+* CPU
+* RAM
 
 ---
 
-## Alerts
+## Remote Access
 
-* /alerts
-* Critical issues
-* Device failures
-* Connectivity issues
+Accès rapide :
 
----
-
-## Sessions
-
-* /sessions
-* Remote access history
-
----
-
-## Settings
-
-* /settings
-* Tunnel settings
-* User preferences
-* Security configuration
-
----
-
-# Backend Django Apps
-
-```txt
-backend/
-│
-├── users/
-├── agents/
-├── devices/
-├── sites/
-├── monitoring/
-├── tunnels/
-├── alerts/
-├── billing/
-├── sessions/
-└── api/
-```
-
----
-
-# Go Network Engine Structure
-
-```txt
-go-engine/
-│
-├── scanner/
-├── discovery/
-├── monitoring/
-├── websocket/
-├── launcher/
-├── tunnels/
-└── utils/
-```
-
----
-
-# AI-Assisted Development Workflow
-
-NetPilot is designed to be developed with AI-assisted programming.
-
-Recommended workflow:
-
-1. Define architecture manually
-2. Generate boilerplate with AI
-3. Validate networking/security manually
-4. Iterate feature by feature
-5. Use AI for repetitive tasks
-6. Keep infrastructure logic human-reviewed
-
-AI can accelerate:
-
-* CRUD generation
-* UI components
-* API scaffolding
-* Database models
-* Type generation
-* Dashboard layouts
-* Documentation
-* Testing boilerplate
-
-Critical networking logic should always be reviewed manually.
-
----
-
-# Desktop Application Architecture
-
-```txt
-SvelteKit UI
-     ↓
-Tauri Desktop Layer
-     ↓
-Golang Network Engine
-     ↓
-Remote LAN
-```
-
----
-
-# Backend Architecture
-
-```txt
-Django REST API
-        ↓
-Django Channels
-        ↓
-Redis
-        ↓
-PostgreSQL
-        ↓
-Celery Workers
-```
-
----
-
-# Communication Flow
-
-```txt
-User Action
-    ↓
-SvelteKit Frontend
-    ↓
-Tauri Commands
-    ↓
-Go Network Engine
-    ↓
-Django Cloud API
-    ↓
-Tunnel Infrastructure
-    ↓
-Remote Device
-```
+* Winbox
+* WebFig
+* SSH
 
 ---
 
 # Architecture
 
 ```txt
-Desktop App (React + Tauri)
-        ↓
-Django API + WebSocket
-        ↓
-Agent Service
-        ↓
-Tailscale / ZeroTier Tunnel
-        ↓
-Remote LAN
-        ↓
-Network Equipment
+SvelteKit
+      ↓
+Tauri
+      ↓
+Go Network Engine
+      ↓
+Django API
+      ↓
+PostgreSQL
 ```
 
 ---
 
-# Tech Stack
+# Technology Stack
 
-## Desktop Frontend
+## Desktop
 
 * SvelteKit
 * TypeScript
@@ -420,252 +193,117 @@ Network Equipment
 * shadcn-svelte
 * Tauri
 
+## Network Engine
+
+* Golang
+
 ## Backend
 
 * Django
 * Django REST Framework
 * Django Channels
-* PostgreSQL
-* Redis
 * Celery
 
-## Networking
+## Database
 
-* Golang (network engine)
-* Tailscale
-* ZeroTier
-* WebSocket
-* TCP/IP
-* ARP Scan
-* Ping Discovery
+* PostgreSQL
+
+## Cache
+
+* Redis
 
 ---
 
-# Golang Network Engine
-
-NetPilot uses Golang for all low-level networking operations.
-
-The Go engine is responsible for:
-
-* LAN scanning
-* ARP discovery
-* Ping sweep
-* Open ports detection
-* Network diagnostics
-* Tunnel communication
-* Device monitoring
-* Reconnection handling
-* Multi-threaded network operations
-* System-level networking tasks
-
-Why Golang:
-
-* Excellent network performance
-* Lightweight binaries
-* Cross-platform compilation
-* High concurrency support
-* Efficient socket management
-* Stable desktop integration
-
-The SvelteKit + Tauri desktop application communicates with the Go networking engine locally.
-
-Architecture example:
+# Project Structure
 
 ```txt
-SvelteKit UI
-   ↓
-Tauri Desktop Layer
-   ↓
-Golang Network Engine
-   ↓
-Remote Network Devices
+netpilot/
+
+├── desktop/
+│   ├── src/
+│   ├── routes/
+│   ├── components/
+│   └── tauri/
+│
+├── go-agent/
+│   ├── scanner/
+│   ├── mikrotik/
+│   ├── monitoring/
+│   ├── websocket/
+│   └── launcher/
+│
+├── backend/
+│   ├── users/
+│   ├── sites/
+│   ├── agents/
+│   ├── mikrotik/
+│   ├── monitoring/
+│   ├── alerts/
+│   └── api/
+│
+└── docs/
 ```
-
----
-
-# Desktop Application
-
-The NetPilot desktop app is built with Tauri.
-
-The application will provide:
-
-* LAN scanning
-* Device discovery
-* Real-time monitoring
-* Remote access dashboard
-* Tunnel management
-* Winbox launcher
-* SSH launcher
-* Web interface launcher
-
-Cross-platform support:
-
-* Windows (.exe / .msi)
-* macOS (.dmg)
-* Linux
-
----
-
-# Core Features
-
-## 1. Device Discovery
-
-Automatically detect:
-
-* IP address
-* MAC address
-* Vendor
-* Device status
-* Open ports
-
----
-
-## 2. Remote Access
-
-Securely access remote equipment through encrypted tunnels.
-
-Supported access:
-
-* Winbox
-* WebFig
-* SSH
-* HTTPS
-* Telnet
-
----
-
-## 3. Monitoring
-
-Monitor:
-
-* Online/offline status
-* IP changes
-* Device availability
-* Ping latency
-* CPU usage
-* Temperature
-
----
-
-## 4. Multi-Site Management
-
-Manage multiple client locations from one dashboard.
-
-Example:
-
-```txt
-- Hotel Kinshasa
-- Cyber Café Goma
-- ISP Lubumbashi
-- School Brazzaville
-```
-
----
-
-## 5. Smart Diagnostics
-
-Automatic diagnostics for:
-
-* Unreachable devices
-* HTTP failures
-* Gateway conflicts
-* DHCP issues
-* Network instability
-
----
-
-# Future Features
-
-## Planned Features
-
-* Automated backups
-* Config restore
-* Push configurations
-* MikroTik scripts deployment
-* Notifications & alerts
-* Team collaboration
-* Mobile companion app
-* Cloud hotspot management
-* Mikhmon integration
-
----
-
-# Workflow Example
-
-## Client Side
-
-1. Install NetPilot Agent
-2. Login to account
-3. Agent scans LAN automatically
-4. Devices are synchronized to the cloud
-
----
-
-## Technician Side
-
-1. Open NetPilot dashboard
-2. Select remote site
-3. View detected equipment
-4. Click "Connect"
-5. Open Winbox/WebFig remotely
-
----
-
-# Security
-
-Security priorities:
-
-* Encrypted communication
-* Secure authentication
-* VPN tunnel isolation
-* Access permissions
-* Device authorization
-* Activity logging
-
----
-
-# Business Model
-
-## Free Plan
-
-* Limited devices
-* Basic monitoring
-* Single user
-
-## Pro Plan
-
-* Unlimited devices
-* Advanced monitoring
-* Multi-site management
-* Backups
-* Alerts
-* Team collaboration
 
 ---
 
 # Development Roadmap
 
-## Phase 1 — MVP
+## V1
 
-* Authentication
-* Device discovery
+* Auth
+* Agent registration
+* MikroTik discovery
 * Dashboard
-* Tunnel connection
-* Remote access
+* Online/Offline status
 
-## Phase 2 — Monitoring
+## V2
 
-* Real-time metrics
+* RouterOS information
+* Monitoring
 * Alerts
-* Logging
-* Diagnostics
 
-## Phase 3 — Automation
+## V3
 
-* Backup system
-* Script deployment
-* Multi-client support
-* Advanced analytics
+* Remote Winbox launch
+* SSH access
+* WebFig access
+
+## V4
+
+* Configuration backup
+* Scheduled monitoring
+
+## V5
+
+* Multi-vendor support
+* TP-Link
+* Ubiquiti
+* LB-LINK
+
+---
+
+# Business Model
+
+## Free
+
+* 1 site
+* 3 MikroTik
+* Monitoring basique
+
+## Pro
+
+* Sites illimités
+* Monitoring avancé
+* Alertes
+* Historique
+
+## Enterprise
+
+* Multi-techniciens
+* Organisation
+* Audit logs
+* API
+
 
 ---
 

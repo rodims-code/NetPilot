@@ -129,30 +129,77 @@
 </script>
 
 <div class="flex flex-col gap-8 pb-8">
+	<section class="grid gap-6 xl:grid-cols-[1.4fr_0.9fr]">
+		<div class="space-y-5 rounded-[2rem] border border-slate-200/70 bg-white/90 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-slate-700/70 dark:bg-slate-950/80">
+			<div class="space-y-2">
+				<p class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">Tableau de bord</p>
+				<h1 class="text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">Pilotez votre réseau avec NetPilot</h1>
+				<p class="max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">Un aperçu clair de vos agents, vos sites et vos appareils, avec des actions rapides et un design orienté productivité.</p>
+			</div>
+			<div class="grid gap-3 sm:grid-cols-3">
+				<article class="rounded-3xl border border-slate-200/80 bg-slate-50/90 p-4 shadow-sm dark:border-slate-700/70 dark:bg-slate-900/80">
+					<p class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">Agents</p>
+					<p class="mt-3 text-2xl font-semibold text-slate-950 dark:text-white">24</p>
+					<p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Connectés et synchronisés</p>
+				</article>
+				<article class="rounded-3xl border border-slate-200/80 bg-slate-50/90 p-4 shadow-sm dark:border-slate-700/70 dark:bg-slate-900/80">
+					<p class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">Sites</p>
+					<p class="mt-3 text-2xl font-semibold text-slate-950 dark:text-white">12</p>
+					<p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Sites gérés</p>
+				</article>
+				<article class="rounded-3xl border border-slate-200/80 bg-slate-50/90 p-4 shadow-sm dark:border-slate-700/70 dark:bg-slate-900/80">
+					<p class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">Incidents</p>
+					<p class="mt-3 text-2xl font-semibold text-slate-950 dark:text-white">0</p>
+					<p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Alertes critiques</p>
+				</article>
+			</div>
+		</div>
+		<aside class="space-y-4 rounded-[2rem] border border-slate-200/70 bg-gradient-to-b from-slate-50 to-white/90 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-slate-700/70 dark:from-slate-950/90 dark:to-slate-950/80 dark:bg-slate-950/95">
+			<div class="flex items-center justify-between gap-4">
+				<div>
+					<p class="text-sm font-semibold text-slate-900 dark:text-white">Actions rapides</p>
+					<p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Accédez instantanément à vos vues les plus importantes.</p>
+				</div>
+				<div class="inline-flex rounded-3xl bg-slate-900/95 px-3 py-2 text-xs font-semibold text-white shadow-sm shadow-slate-900/20">
+					Nouveau style
+				</div>
+			</div>
+			<div class="grid gap-3">
+				<a href="/dashboard/agents" class="rounded-3xl border border-slate-200/80 bg-white/95 px-4 py-4 text-sm font-medium text-slate-900 transition hover:bg-slate-50 dark:border-slate-700/70 dark:bg-slate-900/90 dark:text-slate-100">Voir les agents</a>
+				<a href="/dashboard/devices" class="rounded-3xl border border-slate-200/80 bg-white/95 px-4 py-4 text-sm font-medium text-slate-900 transition hover:bg-slate-50 dark:border-slate-700/70 dark:bg-slate-900/90 dark:text-slate-100">Explorer les appareils</a>
+				<a href="#" class="rounded-3xl border border-slate-200/80 bg-white/95 px-4 py-4 text-sm font-medium text-slate-900 transition hover:bg-slate-50 dark:border-slate-700/70 dark:bg-slate-900/90 dark:text-slate-100">Ouvrir la sécurité</a>
+			</div>
+		</aside>
+	</section>
+
 	{#each sections as section}
-		<div>
-			<h2 class="text-lg font-semibold text-foreground mb-4">{section.title}</h2>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+		<div class="space-y-4 rounded-[2rem] border border-slate-200/70 bg-white/90 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-slate-700/70 dark:bg-slate-950/80">
+			<div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+				<h2 class="text-lg font-semibold text-slate-950 dark:text-white">{section.title}</h2>
+				<p class="text-sm text-slate-500 dark:text-slate-400">{section.items.length} éléments disponibles</p>
+			</div>
+			<div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-2">
 				{#each section.items as item}
 					<a
 						href={item.href}
-						class="group flex items-center gap-4 rounded-lg border border-border bg-card p-4 hover:bg-muted/50 transition-colors"
+						class="group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white/95 p-5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-700/70 dark:bg-slate-950/90"
 					>
-						<div class={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${item.color}`}>
-							<svelte:component this={item.icon} class="h-5 w-5" />
-						</div>
-						<div class="flex-1 min-w-0">
-							<div class="flex items-center gap-2">
-								<p class="text-sm font-medium text-foreground">{item.title}</p>
-								{#if item.badge}
-									<span class="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">
-										{item.badge}
-									</span>
-								{/if}
+						<div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sky-500 via-sky-400 to-indigo-500 opacity-30"></div>
+						<div class="relative flex items-center gap-4">
+							<div class={`flex h-12 w-12 shrink-0 items-center justify-center rounded-3xl ${item.color}`}>
+								<svelte:component this={item.icon} class="h-5 w-5" />
 							</div>
-							<p class="text-xs text-muted-foreground mt-0.5 line-clamp-2">{item.description}</p>
+							<div class="flex-1 min-w-0">
+								<div class="flex flex-wrap items-center gap-2">
+									<p class="text-base font-semibold text-slate-950 dark:text-white">{item.title}</p>
+									{#if item.badge}
+										<span class="inline-flex items-center rounded-full bg-sky-500/10 px-2.5 py-1 text-[11px] font-semibold text-sky-600 dark:text-sky-300">{item.badge}</span>
+									{/if}
+								</div>
+								<p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">{item.description}</p>
+							</div>
+							<ArrowRightIcon class="h-4 w-4 text-slate-400 transition-transform duration-300 group-hover:translate-x-1 dark:text-slate-500" />
 						</div>
-						<ArrowRightIcon class="h-4 w-4 text-muted-foreground shrink-0 transition-transform group-hover:translate-x-1" />
 					</a>
 				{/each}
 			</div>

@@ -1,98 +1,76 @@
 <script lang="ts" module>
-	import AudioWaveformIcon from "@lucide/svelte/icons/audio-waveform";
-	import BookOpenIcon from "@lucide/svelte/icons/book-open";
-	import BotIcon from "@lucide/svelte/icons/bot";
-	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
-	import CommandIcon from "@lucide/svelte/icons/command";
-	import FrameIcon from "@lucide/svelte/icons/frame";
-	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
-	import MapIcon from "@lucide/svelte/icons/map";
+	import LayoutDashboardIcon from "@lucide/svelte/icons/layout-dashboard";
+	import ServerIcon from "@lucide/svelte/icons/server";
+	import RouterIcon from "@lucide/svelte/icons/router";
+	import ShieldIcon from "@lucide/svelte/icons/shield";
 	import Settings2Icon from "@lucide/svelte/icons/settings-2";
-	import SquareTerminalIcon from "@lucide/svelte/icons/square-terminal";
+	import GlobeIcon from "@lucide/svelte/icons/globe";
+	import BuildingIcon from "@lucide/svelte/icons/building";
+	import MapPinIcon from "@lucide/svelte/icons/map-pin";
+	import NetworkIcon from "@lucide/svelte/icons/network";
 
-	// This is sample data.
 	const data = {
 		user: {
-			name: "shadcn",
-			email: "m@example.com",
-			avatar: "/avatars/shadcn.jpg",
+			name: "Admin WISP",
+			email: "admin@netpilot.local",
+			avatar: "/avatars/admin.jpg",
 		},
 		teams: [
 			{
-				name: "Acme Inc",
-				logo: GalleryVerticalEndIcon,
+				name: "Global Network",
+				logo: GlobeIcon,
 				plan: "Enterprise",
 			},
 			{
-				name: "Acme Corp.",
-				logo: AudioWaveformIcon,
-				plan: "Startup",
+				name: "Dakar HQ",
+				logo: BuildingIcon,
+				plan: "Main Site",
 			},
 			{
-				name: "Evil Corp.",
-				logo: CommandIcon,
-				plan: "Free",
+				name: "Abidjan Branch",
+				logo: MapPinIcon,
+				plan: "Remote Site",
 			},
 		],
 		navMain: [
 			{
-				title: "Playground",
-				url: "#",
-				icon: SquareTerminalIcon,
+				title: "Main",
+				url: "/dashboard",
+				icon: LayoutDashboardIcon,
 				isActive: true,
 				items: [
 					{
-						title: "History",
-						url: "#",
-					},
-					{
-						title: "Starred",
-						url: "#",
-					},
-					{
-						title: "Settings",
-						url: "#",
+						title: "Overview",
+						url: "/dashboard",
 					},
 				],
 			},
 			{
-				title: "Models",
+				title: "Infrastructure",
 				url: "#",
-				icon: BotIcon,
+				icon: NetworkIcon,
 				items: [
 					{
-						title: "Genesis",
-						url: "#",
+						title: "Agents",
+						url: "/dashboard/agents",
 					},
 					{
-						title: "Explorer",
-						url: "#",
-					},
-					{
-						title: "Quantum",
-						url: "#",
+						title: "MikroTik Devices",
+						url: "/dashboard/devices",
 					},
 				],
 			},
 			{
-				title: "Documentation",
+				title: "Security & Access",
 				url: "#",
-				icon: BookOpenIcon,
+				icon: ShieldIcon,
 				items: [
 					{
-						title: "Introduction",
+						title: "VPN Tunnels",
 						url: "#",
 					},
 					{
-						title: "Get Started",
-						url: "#",
-					},
-					{
-						title: "Tutorials",
-						url: "#",
-					},
-					{
-						title: "Changelog",
+						title: "Firewall Rules",
 						url: "#",
 					},
 				],
@@ -103,19 +81,11 @@
 				icon: Settings2Icon,
 				items: [
 					{
-						title: "General",
+						title: "Account",
 						url: "#",
 					},
 					{
-						title: "Team",
-						url: "#",
-					},
-					{
-						title: "Billing",
-						url: "#",
-					},
-					{
-						title: "Limits",
+						title: "Preferences",
 						url: "#",
 					},
 				],
@@ -123,19 +93,14 @@
 		],
 		projects: [
 			{
-				name: "Design Engineering",
+				name: "Dakar Core Routers",
 				url: "#",
-				icon: FrameIcon,
+				icon: ServerIcon,
 			},
 			{
-				name: "Sales & Marketing",
+				name: "Client Access Points",
 				url: "#",
-				icon: ChartPieIcon,
-			},
-			{
-				name: "Travel",
-				url: "#",
-				icon: MapIcon,
+				icon: RouterIcon,
 			},
 		],
 	};

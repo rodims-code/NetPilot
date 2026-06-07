@@ -169,17 +169,29 @@ Accès rapide :
 
 # Architecture
 
+L'écosystème NetPilot est divisé en trois composants majeurs pour séparer l'interface technicien, la collecte de données chez le client, et le serveur central.
+
 ```txt
-SvelteKit
+SvelteKit (App Technicien)
       ↓
 Tauri
       ↓
-Go Network Engine
+Go Network Engine (Agent Client)
       ↓
-Django API
+Django API (Serveur Central)
       ↓
 PostgreSQL
 ```
+
+### 1. App Technicien (`desktop/`)
+Application lourde (Tauri/SvelteKit) **utilisée uniquement par le technicien**. Elle lui permet d'administrer les sites, d'ajouter de nouveaux agents et de se connecter aux MikroTik. Le client n'y a pas accès.
+
+### 2. Agent Client (`engine_go/`)
+Application légère, **compilée en un fichier autonome (.exe) et installée chez le client** (dans son réseau local). Cet agent scanne le réseau, trouve les équipements MikroTik, génère un Agent ID, et envoie ces données au serveur. Le client n'a pas d'interface graphique à gérer.
+
+### 3. Serveur Central (`backend/`)
+L'API REST hébergée sur le cloud qui gère l'authentification et fait le pont entre les agents des clients et l'application du technicien.
+
 
 ---
 
@@ -219,29 +231,24 @@ PostgreSQL
 ```txt
 netpilot/
 
-├── desktop/
+├── desktop/        # 💻 App Technicien (Interface SvelteKit/Tauri)
 │   ├── src/
 │   ├── routes/
 │   ├── components/
 │   └── tauri/
 │
-├── go-agent/
+├── engine_go/      # ⚙️ Agent Client (Code source de l'exécutable)
+│   ├── api/
+│   ├── config/
 │   ├── scanner/
-│   ├── mikrotik/
-│   ├── monitoring/
-│   ├── websocket/
-│   └── launcher/
+│   └── main.go
 │
-├── backend/
-│   ├── users/
-│   ├── sites/
-│   ├── agents/
-│   ├── mikrotik/
-│   ├── monitoring/
-│   ├── alerts/
-│   └── api/
+├── backend/        # ☁️ Serveur Central (API Django REST)
+│   ├── api/
+│   ├── core/
+│   └── manage.py
 │
-└── docs/
+└── docs/           # Documentation
 ```
 
 ---

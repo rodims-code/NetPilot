@@ -9,13 +9,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "moduleResolution": "bundler", // <-- NE PAS OUBLIER LA VIRGULE ICI !
-
-    "baseUrl": ".",
-    "paths": {
-      "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"]
-    }
+    "moduleResolution": "bundler"
   }
 }
 /* 

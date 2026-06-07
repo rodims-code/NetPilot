@@ -15,8 +15,8 @@
 </script>
 
 <Sidebar.Provider>
-	<div class="min-h-screen bg-background px-4 py-4 md:px-6 md:py-6">
-		<div class="mx-auto flex min-h-screen max-w-screen-2xl flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm dark:border-slate-700 dark:bg-slate-950 md:flex-row md:gap-6">
+	<div class="h-screen overflow-hidden bg-background px-4 py-4 md:px-6 md:py-6">
+		<div class="mx-auto flex h-full max-w-screen-2xl flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm dark:border-slate-700 dark:bg-slate-950 md:flex-row md:gap-6">
 			<AppSidebar class="order-2 md:order-1" />
 			<Sidebar.Inset class="order-1 flex-1 overflow-hidden p-4 md:order-2 md:p-6">
 				<header class="sticky top-0 z-20 flex h-20 items-center gap-4 border-b border-border bg-background/95 px-3 backdrop-blur-xl dark:bg-slate-950/95">
@@ -36,7 +36,7 @@
 						</Breadcrumb.Root>
 					</div>
 				</header>
-				<main class="flex-1 overflow-y-auto p-4 md:p-6">
+				<main class="flex-1 h-full overflow-y-auto p-4 md:p-6">
 					{@render children()}
 				</main>
 			</Sidebar.Inset>

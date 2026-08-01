@@ -1,10 +1,11 @@
+from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from .models import User, Site, Agent, MikrotikDevice
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'role']
+        fields = ['id', 'username', 'email', 'role', 'password']
 
 class SiteSerializer(serializers.ModelSerializer):
     class Meta:
